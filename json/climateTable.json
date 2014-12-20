@@ -1,0 +1,11 @@
+{
+	"0":{"descrip":"Rainforest","more":"tropical moist: humid & wet year-round, little temperature variation","example":"Amazon Basin; Congo Basin of equatorial Africa; East Indies, from Sumatra to New Guinea"}, 
+	"1":{"descrip":"Savanna","more":"wet-dry tropical: short dry mild winter, hot wet summer","example":"India, Indochina, West Africa, southern Africa, South America and the north coast of Australia"}, 
+	"2":{"descrip":"Desert","more":"dry tropical: hot & dry year-round, low wind","example":"southwestern United States and northern Mexico; Argentina; north Africa; south Africa; central part of Australia"}, 
+	"3":{"descrip":"Steppe","more":"dry midlatitude: long cold winter, warm summer, little rain","example":"Western North America (Great Basin, Columbia Plateau, Great Plains); Eurasian interior, from steppes of eastern Europe to the Gobi Desert and North China"}, 
+	"4":{"descrip":"Chapparal","more":"mediterranean: wet mild winter, very dry summer","example":"central/southern California; coastal zones on Mediterranean Sea; coastal West/South Australia; Chilean coast; Cape Town region of South Africa"}, 
+	"5":{"descrip":"Grasslands","more":"dry midlatitude: cold winter, hot summer, some rain","example":"western North America (Great Basin, Columbia Plateau, Great Plains); Eurasian interior"}, 
+	"6":{"descrip":"Deciduous","more":"moist continental: cold winter, hot summer, plenty of rain","example":"eastern parts of the United States and southern Canada; northern China; Korea; Japan; central and eastern Europe"}, 
+	"7":{"descrip":"Taiga","more":"boreal forest: long cold winter, short cool summer, humid","example":"central and western Alaska; Canada, from the Yukon Territory to Labrador; Eurasia, from northern Europe across all of Siberia to the Pacific Ocean"}, 
+	"8":{"descrip":"Tundra","more":"artic coastal: long cold winter, short cool summer, dry","example":"arctic zone of North America; Hudson Bay region; Greenland coast; northern Siberia bordering the Arctic Ocean"}
+}

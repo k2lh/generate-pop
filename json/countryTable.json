@@ -1,0 +1,16 @@
+{
+"0": {"name":"America","area":"9365000","crops":"18","estpop":"54000000","density":"6"},
+"1":{"name":"Bulgaria","area":"42683","crops":"30","estpop":"2700000","density":"63"},
+"2": {"name":"Denmark","area":"16359","crops":"51","estpop":"605000","density":"37"},
+"3": {"name":"England","area":"50350","crops":"23","estpop":"2200000","density":"43"},
+"4": {"name":"France","area":"674843","crops":"35","estpop":"60000000","density":"88"},
+"5": {"name":"Germany","area":"135236","crops":"33","estpop":"9380000","density":"69"},
+"7": {"name":"Inca (empire)","area":"772204","crops":"8","estpop":"20000000","density":"26"},
+"8": {"name":"India","area":"1147949","crops":"52","estpop":"105000000","density":"91"},
+"9": {"name":"Ireland","area":"32595","crops":"17","estpop":"509000","density":"15"},
+"10": {"name":"Italy","area":"113521","crops":"35","estpop":"6460000","density":"60"},
+"11": {"name":"Japan","area":"152411","crops":"13","estpop":"18000000","density":"118"},
+"12":{"name":"Mali (empire)","area":"1350000","crops":"4","estpop":"9000000","density":"7"},
+"13": {"name":"Mongolia","area":"604247","crops":"1","estpop":"120840","density":".2"},
+"14": {"name":"Spain","area":"192819","crops":"37","estpop":"4488000","density":"23"}
+}

@@ -1,0 +1,11 @@
+{
+"0":{"name":"Rainforest: humid & wet year-round","amount":"15","adjust":"3.5"},
+"1":{"name":"Savanna: short dry mild winter, hot wet summer","amount":"50","adjust":"2"},
+"2":{"name":"Desert: hot & dry year-round","amount":"5","adjust":"5"},
+"3":{"name":"Steppe: long cold winter, warm summer, little rain","amount":"10","adjust":"4"},
+"4":{"name":"Chapparal: wet mild winter, very dry summer","amount":"25","adjust":"3"},
+"5":{"name":"Grasslands: cold winter, hot summer, some rain","amount":"30","adjust":"2.5"},
+"6":{"name":"Deciduous: cold winter, hot summer, plenty of rain","amount":"60","adjust":"1.5"},
+"7":{"name":"Taiga: long cold winter, short cool summer, humid","amount":"15","adjust":"3.5"},
+"8":{"name":"Tundra: long cold winter, short cool summer, dry","amount":"5","adjust":"5"}
+}

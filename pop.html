@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Constructed Country Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,600' rel='stylesheet' type='text/css'>
+    <script data-require="angular.js@1.2.0-rc3-nonmin" data-semver="1.2.0-rc3-nonmin" src="http://code.angularjs.org/1.2.0-rc.3/angular.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.7.0.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css" />
+    <script src="script.js"></script>
+</head>
+<body ng-controller="Ctrl">
+<div class="container-fluid">
+<div class="row well">
+    <div class="col-md-10">
+        <i class="fa fa-flask fa-2x"></i> <span class="h2">Constructed Country Generator</span>
+    </div>
+    <div class="col-md-2">
+        <a class="h5 pull-right" href="../index.html">generator list</a>
+    </div>
+
+</div>
+<form class="form-horizontal" role="form">
+
+<div class="row">
+    <div class="col-md-6 well">
+        <div class="form-group">
+            <label for="arable" class="col-sm-2 control-label">Total sq miles</label>
+            <div class="col-sm-4 col-md-4">
+                <input type="number" min="10" name="land" ng-model="land" class="form-control">
+            </div>
+            <div class="col-sm-1 col-md-1 nonarrow">
+                <button type="button" class="btn btn-info" ng-click="randomLand()"><i class="fa fa-flask fa-fw"></i></button>
+            </div>
+        </div>
+
+        <div class="form-group">
+                <label for="settled" class="col-sm-2 control-label">Country's age:</label>
+                <div class="col-md-3">
+                    <input type="number" name="settled" ng-model="settled" class="form-control" ng-change="updateAge()">
+                </div>
+                <div class="col-md-1 nonarrow">
+                    <button type="button" class="btn btn-info" ng-click="randomAge()"><i class="fa fa-flask fa-fw"></i></button>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label for="climateList" class="col-sm-2 control-label">Overall climate:</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="climateList" ng-options="c.descrip for c in climates" ng-change="selectClimate()"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="arable" class="col-sm-2 control-label">Arable land:</label>
+            <div class="col-md-3">
+                <input type="number" min="0" max="100" name="arable" ng-model="arable" class="form-control"><span class="h4 inside-input">%</span>
+            </div>
+            <div class="col-md-1 nonarrow">
+                <button type="button" class="btn btn-info" ng-click="selectClimate()"><i class="fa fa-flask fa-fw"></i></button>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <p>What's the average citizen's regular diet?</p>
+        </div>
+
+        <div class="form-group">
+            <label for="meat" class="col-md-6 half-label">Staple crops are vegetables and:</label>
+            <div class="col-md-6">
+                <select class="form-control" name="grain" ng-model="grain" ng-change="updateDiet()">
+                    <option value="1">wheat</option>
+                    <option value=".75">flax, buckwheat </option>
+                    <option value=".5">rice</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="meat" class="col-md-6 half-label">Farm-raised meat is eaten:</label>
+            <div class="col-md-6">
+                <select class="form-control" name="meat" ng-model="meat" ng-change="updateDiet()">
+                    <option value=".1">1-3 times a year</option>
+                    <option value=".3">1-3 times a month</option>
+                    <option value=".45">1-3 times a week</option>
+                    <option value=".6">every meal</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="other" class="col-md-6 half-label">Fish, wild game, or foraged foods are eaten:</label>
+            <div class="col-md-6">
+                <select class="form-control" name="other" ng-model="other" ng-change="updateDiet()">
+                    <option value=".9">a few times a year</option>
+                    <option value=".85">1-2 times a month</option>
+                    <option value=".80">1-3 times a week</option>
+                    <option value=".75">every meal</option>
+                </select>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <p>In the past decade, what percentage of the population has died or fled due to:</p>
+        </div>
+        <div class="form-group">
+                <label for="famine" class="col-md-6 half-label">severe famine or drought</label>
+                <div class="col-md-3">
+                    <input type="number" min="0" max="20" name="famine" ng-model="famine" class="form-control"><span class="h4 inside-input">%</span>
+                </div>
+                <div class="col-md-1 nonarrow">
+                    <button type="button" class="btn btn-info" ng-model="famine" ng-click="randomFamine()"><i class="fa fa-flask fa-fw"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="plague" class="col-md-6 half-label">contagious/waterborne plague</label>
+                <div class="col-md-3">
+                    <input type="number" min="0" max="20" name="plague" ng-model="plague" class="form-control"><span class="h4 inside-input">%</span>
+                </div>
+                <div class="col-md-1 nonarrow">
+                    <button type="button" class="btn btn-info" ng-click="randomPlague()"><i class="fa fa-flask fa-fw"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exwar" class="col-md-6 half-label">external warfare (battles outside borders)</label>
+                <div class="col-md-3">
+                    <input type="number" min="0" max="20" name="exwar" ng-model="exwar" class="form-control"><span class="h4 inside-input">%</span>
+                </div>
+                <div class="col-md-1 nonarrow">
+                    <button type="button" class="btn btn-info" ng-click="randomExwar()"><i class="fa fa-flask fa-fw"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inwar" class="col-md-6 half-label">internal strife (battles inside borders)</label>
+                <div class="col-md-3">
+                    <input type="number" min="0" max="20" name="inwar" ng-model="inwar" class="form-control"><span class="h4 inside-input">%</span>
+                </div>
+                <div class="col-md-1 nonarrow">
+                    <button type="button" class="btn btn-info" ng-click="randomInwar()"><i class="fa fa-flask fa-fw"></i></button>
+                </div>
+            </div>
+
+        <hr>
+
+        <div class="form-group">
+            <label for="settlementList" class="col-md-4 control-label">Setlements are:</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="settlementList" ng-options="s.name for s in settlements" ng-change="updateSettlements()"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="literacyList" class="col-md-4 control-label">Education/literacy is:</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="literacyList" ng-options="l.name for l in literacy" ng-change="updateLiteracy()"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="economyList" class="col-md-4 control-label">The economy is:</label>
+            <div class="col-md-8">
+                <select class="form-control" ng-model="economyList" ng-options="e.name for e in economy" ng-change="updateEconomy()"></select>
+            </div>
+        </div>
+
+        <!--
+            <div ng-click="rollDice(6)">click here to roll</div>
+            result = {{totalRoll}}
+            -->
+
+    </div>
+
+    <div class="col-md-6 secondary">
+        <div class="well margtop15">
+            <tabset>
+            <tab heading="Stats">
+                <h4>Country Statistics, Summary</h4>
+                <p>Land area is in square miles. See tabs on Countries, Climates, and Cities for real-world comparison.</p>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <th>statistic</th>
+                            <th>value</th>
+                            <th>formula</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>total area</td>
+                                <td>{{land | number}}</td>
+                                <td>(provided)</td>
+                            </tr>
+                            <tr>
+                                <td>farmland</td>
+                                <td>{{farmland | number}}</td>
+                                <td>cultivated + arable</td>
+                            </tr>
+                            <tr>
+                                <td>density per mile</td>
+                                <td>{{density | number}}</td>
+                                <td>population &divide; total land</td>
+                            </tr>
+
+                            <tr>
+                                <td>population</td>
+                                <td>{{actualPop | number}}<br/>
+                                    {{urbanPop | number}}<br/>
+                                    {{ruralPop | number}}<br/>
+                                    {{itenPop | number}}</td>
+                                <td>population - (climate + strife)<br/>
+                                    # residing in cities and towns<br />
+                                    # residing in settlements < 20 people<br/>
+                                    # itinerant, isolated, or outcast<br />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>greater urban</td>
+                                <td>
+                                    {{capital | number:0}}<br/>
+                                    <span data-ng-repeat="u in unit">
+                                        <span data-ng-show="u.type == 'trade center'">
+                                           {{u.size  | number:0}}<br/>
+                                        </span>
+                                     </span>
+                                </td>
+                                <td>
+                                    capital<br/>
+                                    trade center(s)<br/>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <td>lesser urban</td>
+                                <td>
+                                        <span data-ng-show="bigCityLarge > 0">{{bigCityLarge  | number:0}}<br/></span>
+                                        <span data-ng-show="bigCityMed > 0">{{bigCityMed  | number:0}}<br/></span>
+                                        <span data-ng-show="bigCitySmall > 0">{{bigCitySmall  | number:0}}<br/></span>
+                                        <span data-ng-show="cityLarge > 0">{{cityLarge  | number:0}}<br/></span>
+                                        <span data-ng-show="cityMed > 0">{{cityMed  | number:0}}<br/></span>
+                                        <span data-ng-show="citySmall > 0">{{citySmall  | number:0}}<br/></span>
+                                        {{towns  | number:0}}<br/>
+                                        {{villages  | number:0}}
+                                </td>
+                                <td>
+                                        <span data-ng-show="bigCityLarge > 0">big city, 80K-100K<br/></span>
+                                        <span data-ng-show="bigCityMed > 0">big city, 60K-80K <br/></span>
+                                       <span data-ng-show="bigCitySmall > 0"> big city, 40K - 60K<br/></span>
+                                        <span data-ng-show="cityLarge > 0">city, 20K-40K<br/></span>
+                                       <span data-ng-show="cityMed > 0"> city, 10K-20K <br/></span>
+                                       <span data-ng-show="citySmall > 0"> city, 5K - 10K<br/></span>
+                                        towns: 1K-5K<br/>
+                                        villages: under 1K
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>universities</td>
+                                <td>{{school | number:0}}</td>
+                                <td><span ng-repeat="u in university">{{u.descrip}}<br/></span></td>
+                            </tr>
+
+                            <tr>
+                                <td>literacy rate</td>
+                                <td>{{literacyRate | number:0}}%</td>
+                                <td>overall</td>
+                            </tr>
+
+                            <tr>
+                                <td>border/isolated forts</td>
+                                <td>{{castleActiveWild | number:0}}<br/>
+                                {{castleRuinWild | number:0}}</td>
+                                <td># currently in use<br/>
+                                # abandoned/destroyed<br/>
+                                {{castleA}} -- {{castleB}}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>central/urban forts</td>
+                                <td>{{castleActiveUrban | number:0}}<br/>
+                                {{castleRuinUrban | number:0}}</td>
+                                <td># currently in use<br/>
+                                # abandoned/destroyed</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </tab>
+            <tab heading="Notes">
+            <h4>How to Use & Other Info</h4>
+            <p>Use the flask icon to randomize an entry. See the next two tabs for real-world comparisons, modern and historical.
+            If you need names for the country, its cities, and locations, try the <a href="http://words.karinoyo.com/">Conlang Word Generator</a>.</p>
+            <p>Today, the average crop yield is around 30:1; pre-modern crop yields were closer to 2:1.
+            The generator calculates based on modern acreage-to-feed rates and adjusts downwards. Tweaking the country's climate will also affect the crop
+            yield. Unless, of course, merchants/imports provide most or all food, in which case population can be nearly independent of local resources.</p>
+            <p>This generator only estimates for farming cultures. For nomads, you'll need a lot of land per person. If there's not as much land, what there is
+            must be resource-rich (eg early Japan). If you want to estimate a nomadic country, try Mongolia. It has a modern density of 5; estimates put its density at .2
+            in Chinggis Khan's era: that's 1 person for every 5 square miles. Of course, 120K people is still a lot if you can get them all in one place.</p>
+
+            </tab>
+            <tab heading="Countries">
+                <h4>Comparison of Country Land Size and Use</h4>
+                <p>Populations are cited estimates to best guesses. Some areas don't reflect modern amounts, as the empire no longer exists, or
+                the country has expanded (ie Hong Kong's land reclamation).</p>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <th>country</th>
+                            <th>area, sq miles</th>
+                            <th>% arable</th>
+                            <th>population c 1500</th>
+                            <th>density</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in country | orderObjectBy:'name':false">
+                                <td>{{item.name}}</td>
+                                <td>{{item.area | number}}</td>
+                                <td>{{item.crops}}%</td>
+                                <td>{{item.estpop | number}}</td>
+                                <td>{{item.density}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </tab>
+
+            <tab heading="Climates">
+            <h4>Climate Biome Examples</h4>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <th>climate</th>
+                            <th>examples</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in climateTable">
+                                <td>{{item.descrip}}</td>
+                                <td>{{item.example}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </tab>
+
+            <tab heading="Cities">
+            <h4>City Populations 1500 CE</h4>
+                <p>A small selection of some of the world's metropolises, around 1500.</p>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <th>city</th>
+                            <th>modern country</th>
+                            <th>population c 1500</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in city | orderObjectBy:'name':false">
+                                <td>{{item.name}}</td>
+                                <td>{{item.country}}</td>
+                                <td>{{item.estpop | number}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </tab>
+
+            <tab heading="Credits">
+                <h4>Credits</h4>
+                <p>Inspired by S. John Ross' <a href="http://www222.pair.com/sjohn/blueroom/demog.htm">Medieval Demographics Made Easy</a>.</p>
+                <p>Written in Angularjs, using Bootstrap Twitter, Angular-UI Bootstrap directives, and Font Awesome. No PHP was harmed in the making of this site.
+                Build in jEdit, on a Mac. Tested in Chrome, Firefox, Safari, and Opera. If you're using IE, you're on your own. Get a real browser.</p>
+                <p class="strong">Additional links and research</p>
+                <ul class="fa-ul">
+                    <li><i class="fa-li fa fa-paperclip"></i><a href="http://en.wikipedia.org/wiki/Historical_urban_community_sizes">Historical urban community sizes</a></li>
+                    <li><i class="fa-li fa fa-paperclip"></i><a href="http://faculty.smu.edu/rkemper/cf_3333/cf_3333_Populations_in_1500.htm">Populations in 1500</a></li>
+                    <li><i class="fa-li fa fa-paperclip"></i><a href="http://www.uncp.edu/home/rwb/lecture_nonwest_world.htm">Asian, African & American Civilizations Before 1500</a></li>
+                    <li><i class="fa-li fa fa-paperclip"></i><a href="http://www.populstat.info/">Population statistics: historical demography</a></li>
+                    <li><i class="fa-li fa fa-paperclip"></i><a href="http://en.wikipedia.org/wiki/Medieval_demography">Medieval demography</a></li>
+                    <li><i class="fa-li fa fa-paperclip"></i><a href="http://www.infoplease.com/ipa/A0934666.html">Population Density per Square Mile of Countries [modern]</a></li>
+                    <li><i class="fa-li fa fa-paperclip"></i><a href="http://en.wikipedia.org/wiki/List_of_metropolitan_areas_by_population">List of metropolitan areas by population [modern]</a></li>
+                    <li><i class="fa-li fa fa-paperclip"></i><a href="http://ask.metafilter.com/77287/How-much-land-does-a-person-need">How much land does a person need?</a></li>
+                    <li><i class="fa-li fa fa-paperclip"></i><a href="http://www.permies.com/t/12422/community/Amount-land-person">Amount of land per person?</a></li>
+                    <li><i class="fa-li fa fa-paperclip"></i><a href="http://en.wikipedia.org/wiki/Land_use_statistics_by_country">Land use statistics by country</a></li>
+                    <li><i class="fa-li fa fa-paperclip"></i><a href="http://www.blueplanetbiomes.org/climate.htm">World Climates</a></li>
+                    <li><i class="fa-li fa fa-paperclip"></i><a href="http://www.dandwiki.com/wiki/A_Magical_Medieval_City_Guide_(3.5e_Other)">A Magical Medieval City Guide</a></li>
+                    <li><i class="fa-li fa fa-paperclip"></i><a href="http://www.welshpiper.com/populations-for-low-fantasy-settings/">Populations for Low Fantasy Settings (+ generator)</a></li>
+                </ul>
+            </tab>
+
+      </tabset>
+    </div>
+</div>
+</div>
+</form>
+</body>
+</html>
+

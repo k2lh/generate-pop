@@ -1,0 +1,17 @@
+{
+    "0": {"name":"Ahmedabad","country":"India","estpop":"100000"},
+    "1": {"name":"Bago","country":"Burma","estpop":"140000"},
+    "2": {"name":"Beijing","country":"China","estpop":"1000000"},
+    "3": {"name":"Cairo","country":"Egypt","estpop":"40000"},
+    "4": {"name":"Constantinople","country":"Turkey","estpop":"200000"},
+    "5": {"name":"Cusco","country":"Peru","estpop":"300000"},
+    "6": {"name":"Hong Kong","country":"China","estpop":"120000"},
+    "7": {"name":"Gao","country":"Mali","estpop":"80000"},
+    "8": {"name":"Kano","country":"Nigeria","estpop":"50000"},
+    "9": {"name":"London","country":"England","estpop":"75000"},
+    "10": {"name":"Milan","country":"Italy","estpop":"80000"},
+    "11": {"name":"Paris","country":"France","estpop":"185000"},
+    "12": {"name":"Seoul","country":"S Korea","estpop":"125000"},
+    "13": {"name":"Tenochtitlan","country":"Mexico","estpop":"225000"},
+    "14": {"name":"Vijayanagara","country":"India","estpop":"500000"}
+}
